@@ -1,22 +1,19 @@
--- SQL porfolio project.
--- downloaded credit card transactions dataset from below link :
--- https://www.kaggle.com/datasets/thedevastator/analyzing-credit-card-spending-habits-in-india
--- import the dataset in sql server with table name : credit_card_transcations
--- change the column names to lower case before importing data to sql server.Also replace space within column names with underscore.
--- (alternatively you can use the dataset present in zip file)
--- while importing make sure to change the data types of columns. by defualt it shows everything as varchar.
+/* 
+---------------------------------------------------------------
+Title: Credit Card Transactions SQL Analysis
+Author: Srinidhi Desetty
+Description: 
+  SQL project exploring credit card transactions dataset 
+  using aggregation, window functions, and analytical queries.
+---------------------------------------------------------------
+*/
 
--- write 4-6 queries to explore the dataset and put your findings 
 USE sample_db;
-
-SELECT *
-FROM credit_card_transcations;
-
-RENAME TABLE credit_card_transcations TO credit_card_transactions;
 
 SELECT * FROM credit_card_transactions;
 
--- solve below questions
+-- ================================================================================================================================
+
 -- 1- write a query to print top 5 cities with highest spends and their percentage contribution of total credit card spends 
 SELECT city, SUM(amount) as total_spends, 
        ROUND(SUM(amount) * 100 / (SELECT SUM(amount) FROM credit_card_transactions), 2) as per_contribution
@@ -140,8 +137,3 @@ SELECT card_type,
        ROUND(AVG(amount),2) as avg_spend_per_transaction
 FROM credit_card_transactions
 GROUP BY card_type;
-
-
--- once you are done with this create a github repo to put that link in your resume. Some example github links:
--- https://github.com/ptyadana/SQL-Data-Analysis-and-Visualization-Projects/tree/master/Advanced%20SQL%20for%20Application%20Development
--- https://github.com/AlexTheAnalyst/PortfolioProjects/blob/main/COVID%20Portfolio%20Project%20-%20Data%20Exploration.sql
